@@ -8,6 +8,20 @@
       "expo-router"
     ],
     "name": "job-search",
-    "slug": "job-search"
+    "slug": "job-search",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "df9bd611-3124-4561-8fd3-2389572da3d1"
+      }
+    },
+    "android": {
+      "package": "com.axda.jobsearch"
+    },
+    "ios": {
+      "bundleIdentifier": "com.axda.jobsearch"
+    }
   }
 }
