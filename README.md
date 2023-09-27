@@ -1,4 +1,4 @@
-# Social B
+# Job Search Mobile App
 
 [![React Native](https://img.shields.io/badge/React_Native-61DAFB?logo=react&logoColor=white&style=flat-square)](https://reactnative.dev/)
 [![Expo](https://img.shields.io/badge/Expo-000020?logo=expo&logoColor=white&style=flat-square)](https://expo.dev/)
