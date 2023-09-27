@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -9,13 +9,21 @@ import {
 import { useRouter } from "expo-router";
 
 import styles from "./popularjobs.style";
-import { icons, images, SIZES } from "../../../constants";
+import { SIZES, COLORS } from "../../../constants";
 import PopularJobCard from "../../common/cards/popular/PopularJobCard";
+import { getJobsFromApi } from "../../../services/job";
+import { useQuery } from "react-query";
 
 const Popularjobs = () => {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  const error = false;
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["jobs"],
+    queryFn: getJobsFromApi,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -27,11 +35,11 @@ const Popularjobs = () => {
       <View style={styles.cardsContainer}>
         {isLoading ? (
           <ActivityIndicator size="large" color={COLORS.primary} />
-        ) : error ? (
-          <Text>Something went wrong</Text>
+        ) : isError ? (
+          <Text>Something went wrong!</Text>
         ) : (
           <FlatList
-            data={[1, 2, 3, 4]}
+            data={data}
             renderItem={({ item }) => <PopularJobCard item={item} />}
             keyExtractor={(item) => item?.job_id}
             contentContainerStyle={{ columnGap: SIZES.medium }}
